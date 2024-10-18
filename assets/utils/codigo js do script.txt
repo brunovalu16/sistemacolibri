@@ -1,0 +1,84 @@
+const cadastroForm = document.getElementById("cadastroForm");
+const loginForm = document.getElementById("loginForm");
+const logoutButton = document.getElementById("logoutButton");
+const menuContainer = document.getElementById("menuContainer");
+
+// função que vai recuperar usuário logado
+async function getUser() {
+  await firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // se o usuario estiver logado, chamamos a função inicializarMenu passando parâmetro uid do usuário que está logado
+      inicializarMenu(user.uid);
+    } else {
+      console.log("Nehum usuário logado");
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Carregar o menu nas páginas que precisam dele
+  if (menuContainer) {
+    fetch("menu.html")
+      .then((response) => response.text())
+      .then((data) => {
+        menuContainer.innerHTML = data;
+        getUser();
+      });
+  }
+});
+
+// Inicializar o menu com base no perfil do usuário
+async function inicializarMenu(user) {
+  let usuario;
+  await firebase
+    .firestore()
+    .collection("user")
+    .doc(user)
+    .get()
+
+    .then((doc) => {
+      if (doc.exists) {
+        usuario = doc.data();
+        console.log(usuario);
+        const loggedInUserSpan = document.getElementById("loggedInUser");
+        if (loggedInUserSpan) {
+          loggedInUserSpan.textContent = `Olá, ${usuario.username}`;
+        }
+
+        // Mostrar ou esconder links do menu com base no perfil do usuário logado
+        const perfil = usuario.role;
+        const links = {
+          "01": ["linkDiretoria"],
+          "02": ["linkGerente"],
+          "03": ["linkSupervisor"],
+          "04": ["linkVendedor"],
+          "05": ["linkIndustria"],
+        };
+
+        // Mostrar o link correspondente ao perfil e ocultar os demais
+        for (const [key, values] of Object.entries(links)) {
+          values.forEach((value) => {
+            const linkElement = document.getElementById(value);
+            if (linkElement) {
+              linkElement.style.display = key === perfil ? "inline" : "none";
+            }
+          });
+        }
+      } else {
+        // Esconder todos os links de perfil se nenhum usuário estiver logado
+        const linksPerfil = document.querySelectorAll('#menu li[id^="link"]');
+        linksPerfil.forEach((link) => (link.style.display = "none"));
+      }
+    });
+}
+
+// Manipular o logout
+if (logoutButton) {
+  logoutButton.addEventListener("click", function () {
+    firebase.auth().signOut()
+    .then (()=>{
+        window.location.href = "index.html";
+    })
+
+  });
+}

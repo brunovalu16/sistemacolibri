@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+  --theme-bg-color: rgba(169 169 169 / 10%);
+  --border-color: rgba(113 119 144 / 25%);
+  --theme-color: #c1c1c1;
+  --inactive-color: rgb(113 119 144 / 78%);
+  --body-font: "Poppins", sans-serif;
+  --hover-menu-bg: rgba(12 15 25 / 30%);
+  --content-title-color: #999ba5;
+  --content-bg: rgb(146 151 179 / 13%);
+  --button-inactive: rgb(249 250 251 / 55%);
+  --dropdown-bg: #21242d;
+  --dropdown-hover: rgb(42 46 60);
+  --popup-bg: rgb(22 25 37);
+  --overlay-bg: rgba(36, 39, 59, 0.3);
+  --scrollbar-bg: rgb(1 2 3 / 40%);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+
+.topo {
+  width: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.topo i {
+  margin-left: 250px;
+  font-size: 50px;
+  color: #5f53e7;
+}
+
+.topo h1 {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #c6c6c6;
+}
+
+img {
+  max-width: 100%;
+}
+
+.app2 {
+  background-color: var(--theme-bg-color);
+  max-width: 800px;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 50px;
+  margin-left: 200px;
+}
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.left-side {
+  flex-basis: 240px;
+  border-right: 1px solid var(--border-color);
+  padding: 26px;
+  overflow: auto;
+  flex-shrink: 0;
+  @media screen and (max-width: 945px) {
+    display: none;
+  }
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  a {
+    text-decoration: none;
+    color: var(--theme-color);
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+    &:hover {
+      background-color: #5f53e7;
+      color: white;
+    }
+  }
+  svg {
+    width: 16px;
+    margin-right: 8px;
+  }
+}
+
+.side-menu2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.side-menu2 a {
+  text-decoration: none;
+  color: var(--theme-color);
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+  justify-content: flex-start; /* Garantir que o ícone e o texto fiquem alinhados à esquerda */
+}
+
+.side-menu2 a:hover {
+  background-color: #5f53e7;
+  color: white;
+}
+
+.side-menu2 svg {
+  width: 16px;
+  margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+  flex-shrink: 0; /* Para evitar que o ícone encolha */
+}
+
+
+.main-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  height: 58px;
+  flex-shrink: 0;
+  .header-menu {
+    margin-left: 150px;
+    @media screen and (max-width: 1055px) {
+      margin: auto;
+    }
+    a {
+      padding: 20px 24px;
+    }
+  }
+}
+
+.content-wrapper {
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  padding: 20px 40px;
+  height: 100%;
+  overflow: auto;
+}
+
+.content-button {
+  background-color: #e0e0e0;
+  border: none;
+  padding: 8px 26px;
+  color: #afafaf;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  /*  white-space: nowrap; /* AJUSTA O BACKGRUND COM O TAMANHO DO TEXTO */
+  width: 250px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+h3 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: #5f53e7;
+}
+
+h3 i {
+  width: 1.5rem;
+  margin-left: 20px;
+  color: #6027cc;
+  height: 20px;
+}
+
+h3 a {
+  margin-left: 300px;
+  margin-top: 10px;
+}
+
+a.active {
+  background-color: #5f53e7; /* Define o fundo vermelho */
+  color: white; /* Define a cor do texto para branco para garantir legibilidade */
+  padding: 10px; /* Adiciona um pouco de preenchimento para o efeito visual */
+  text-decoration: none; /* Remove o sublinhado */
+}

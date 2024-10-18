@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Cadastro</title>
+        <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+        <link rel="stylesheet" href="./assets/styles/cadastro.css">
+    </head>
+    <body>
+
+
+
+        <div class="box">
+            <div class="form">
+
+                <div class="brand">
+                    <img src="./assets/img/logo_fbi.png" style="width: 8rem">
+                </div>
+
+                <form>
+                    <div class="inputbox">
+                        <span>username</span>
+                        <input type="text" value="" id="username" required>
+                     </div>
+
+                    <div class="inputbox">
+                        <span>E-mail</span>
+                        <input type="email" value="" id="email" required>
+                     </div>
+
+                    <div class="inputbox">
+                        <span>Senha</span>
+                        <input type="password" id="password" required>
+                     </div>
+
+                    <label for="role">Perfil:</label>
+
+                    <div class="select-container">
+                        <select id="role" required>
+                            <option value="01">Diretoria</option>
+                            <option value="02">Gerente</option>
+                            <option value="03">Supervisor</option>
+                            <option value="04">Vendedor</option>
+                            <option value="05">Indústria</option>
+                        </select>
+                    </div>
+                    
+                    <input type="submit" value="Enviar" class="sub" id="submit">
+                </form>
+            </div>
+        </div>
+
+
+
+        
+        
+
+
+
+
+<!--
+<script src="autenticacao.js"></script>
+-->
+<script src="./js/cadastro.js"></script>
+<script src="./js/firebase-config.js"></script>
+<script src="./js/script.js"></script>
+
+</body>
+</html>

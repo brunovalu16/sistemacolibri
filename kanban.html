@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/styles-kanban.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+   <title>Kanban</title>
+</head>
+<body id="kanban">
+
+
+<!--  MENU  -->
+  
+
+<div id="app">
+    <div id="menuContainer"></div>
+</div>
+
+
+<!--  FIM MENU  -->
+
+
+
+
+<!-- Modal -->
+<div id="cardModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Criar Novo Card</h2>
+        <form id="cardForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="departamento">Departamento:</label>
+            <input type="text" id="departamento" name="departamento" required>
+            
+            <label for="assunto">Assunto (Título do Card):</label>
+            <input type="text" id="assunto" name="assunto" required>
+            
+            <label for="dataCriacao">Data de Criação:</label>
+            <input type="text" id="dataCriacao" name="dataCriacao" required placeholder="DD/MM/AAAA">
+            
+            <label for="dataFinalizacao">Data de Finalização:</label>
+            <input type="text" id="dataFinalizacao" name="dataFinalizacao" required placeholder="DD/MM/AAAA">
+
+            <!-- Novo campo para identificar o responsável -->
+            <label for="responsavel">Responsável:</label>
+            <input type="text" id="responsavel" name="responsavel" required>
+            
+            <label for="prioridade">Prioridade:</label>
+            <select id="prioridade" name="prioridade" required>
+                <option value="medium">Média Prioridade</option>
+                <option value="high">Alta Prioridade</option>
+                <option value="low">Baixa Prioridade</option>
+            </select>
+            
+            <button class="btn" type="submit">Criar Card</button>
+            <button class="btn" type="button" id="cancelar">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+    <main class="kanban">
+        <!-- COLUMN 1 -->
+        <div class="kanban-column" data-id="1">
+            <div class="kanban-title">
+                <h2>
+                    Pendente
+                </h2>
+
+                <button class="add-card">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="kanban-cards">
+                <div class="kanban-card" draggable="true">
+                   
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 2 -->
+        <div class="kanban-column" data-id="2">
+            <div class="kanban-title">
+                <h2>
+                    Recebido
+                </h2>
+
+                <button class="add-card">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="kanban-cards">
+                <div class="kanban-card" draggable="true">
+                   
+
+                   
+
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 3 -->
+        <div class="kanban-column" data-id="3">
+            <div class="kanban-title">
+                <h2>
+                    Em execução
+                </h2>
+
+                <button class="add-card">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="kanban-cards">
+                <div class="kanban-card" draggable="true">
+                    
+
+                    
+
+                    
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 4 -->
+        <div class="kanban-column" data-id="4">
+            <div class="kanban-title">
+                <h2>
+                    Finalizando
+                </h2>
+
+                <button class="add-card">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="kanban-cards">
+                <div class="kanban-card" draggable="true">
+                    
+
+                 
+
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 5 -->
+        <div class="kanban-column" data-id="5">
+            <div class="kanban-title">
+                <h2>
+                    Concluído
+                </h2>
+
+                <button class="add-card">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="kanban-cards">
+                <div class="kanban-card" draggable="true">
+                    
+
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/autenticacao.js"></script>
+    <script type="module" src="./js/script.js"></script>
+    <script src="./js/script-kanban.js"></script>
+</body>
+</html>

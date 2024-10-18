@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-storage.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./arquivos/main.css" />
+  <link rel="stylesheet" href="./arquivos/button.css" />
+  <link rel="stylesheet" href="./arquivos/records.css" />
+  <link rel="stylesheet" href="./arquivos/modal.css" />
+  <link rel="stylesheet" href="./assets/styles/preloader.css" />
+  <script src="./js/autenticacao.js"></script>
+  <script src="./arquivos/main.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
+  
+  <title>Arquivos Gerentes</title>
+</head>
+
+
+
+<body>
+
+  <!--  PRELOADER  -->
+
+  <div id="preloader">
+    <span class="Carregando"></span>
+    <h1>Carregando...</h1>
+  </div>
+
+  <!--  FIM PRELOADER  -->
+
+
+
+
+
+
+  <!--  MENU  -->
+
+  <div id="app">
+    <div id="menuContainer"></div>
+  </div>
+
+  <!--  FIM MENU  -->
+
+
+  
+
+
+
+
+
+  <div class="topo">
+    <i class="fa-regular fa-folder-open"></i>
+    <h1>Arquivos</h1>
+    
+
+
+  </div>
+
+  <main>
+    <button type="button" class="button blue mobile" id="cadastrarCliente">
+      Adicionar Arquivo
+    </button>
+
+
+
+
+
+    <table id="usertable" class="records">
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Tipo de arquivo</th>
+          <th>Data</th>
+          <th>Unidade</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody id="client-list">
+        <!-- Os dados da tabela serão inseridos dinamicamente pelo JavaScript -->
+      </tbody>  
+    </table>
+
+    <div class="pagination-controls">
+      <button id="anterior" class="pagination-button" disabled>Anterior</button>
+      <span id="pageIndicator"> Página 1 </span>
+      <button id="proxima" class="pagination-button">Próximo</button>
+    </div>
+  </div>
+    
+
+    
+    <!--
+    <table id="usertable" class="records">
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Tipo de arquivo</th>
+          <th>Data</th>
+          <th>Unidade</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+    <tbody>
+      Os dados da tabela serão inseridos dinamicamente com o java script 
+    </tbody>  
+    </table>
+
+  -->
+
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <header class="modal-header">
+          <h2>Adicionar Arquivo</h2>
+          <span class="modal-close" id="modalClose">&#10006;</span>
+        </header>
+
+        <form class="modal-form" method="post">
+        <input type="text" class="modal-field" placeholder="Usuário" />
+
+          <div class="dropdown">
+            <input type="text" class="modal-field" id="dropdown-input" placeholder="Tipo de arquivo" readonly />
+            <div class="dropdown-box" id="dropdown-box">
+              <label><input type="checkbox" value="Ações" /> Ações</label>
+              <label><input type="checkbox" value="Catálogos" /> Catálogos</label>
+              <label><input type="checkbox" value="Paineis de vendas" /> Paineis de vendas</label>
+              <label><input type="checkbox" value="Campanhas" /> Campanhas</label>
+              <label><input type="checkbox" value="Relatórios" />Relatórios</label>
+              <label><input type="checkbox" value="Planilhas" /> Planilhas</label>
+              <label><input type="checkbox" value="Apresentações" />Apresentações</label>
+              <label><input type="checkbox" value="Outros" /> Outros</label>
+            </div>
+          </div>
+
+          <input id="inputfile" type="file" class="modal-field" placeholder="Arquivo" accept=".pdf,.doc,.docx,.ppt,.txt, png.,jpg." />
+          <progress value="0"></progress>
+          <input type="text" class="modal-field" id="Unidade" placeholder="Unidade" />
+
+        </form>
+        <footer class="modal-footer">
+          <button id="buttonsave" class="button green">Salvar</button>
+          <button class="button blue">Cancelar</button>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+ 
+
+  <footer></footer>
+
+  
+  <script src="./arquivos/paginacao.js"></script>
+  <script src="./js/preloader.js"></script>
+  <script src="./js/firebase-config.js"></script>
+  <script type="module" src="./js/table-data.js"></script>
+  <script type="module" src="./js/script.js"></script>
+  <script type="module" src="./arquivos/script-modal.js"></script>
+</body>
+
+</html>

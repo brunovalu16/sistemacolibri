@@ -1,0 +1,9 @@
+diretoria: elton@grupofokus.com.br
+
+Gerente: carloseterno@grupofokus.com.br
+
+Supervisor: rose@grupofokus.com.br
+
+Vendedor: vendedor@grupofokus.com.br
+
+Industria: julio@grupofokus.com.br

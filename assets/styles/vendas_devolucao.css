@@ -1,0 +1,6 @@
+iframe {
+    border: none; /* Remove a borda do iframe */
+    width: 100%; /* Ocupa 100% da largura do contêiner */
+    height: 900px; /* Altura fixa, ajuste conforme necessário */
+    margin-left: 110px;
+}

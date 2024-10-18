@@ -1,0 +1,28 @@
+ <nav class="sidebar">
+        <div class="logo">
+            <img src="./assets/img/logo_fbi.png">
+        </div>
+
+        <ul id="menu">
+            <li id="userInfo"><span id="loggedInUser"></span></li>
+            <li><a href="home.html" ><i class="fas fa-home"></i>Home</a></li>
+            <li id="linkDiretoria"><a href="diretoria.html"><i class="fas fa-chart-bar"></i>Diretoria</a></li>
+            <li id="linkGerente"><a href="gerente.html"><i class="fas fa-chart-bar"></i>Gerente</a></li>
+            <li id="linkSupervisor"><a href="supervisor.html"><i class="fas fa-chart-bar"></i>Supervisor</a></li>
+            <li id="linkVendedor"><a href="vendedor.html"><i class="fas fa-chart-bar"></i>Vendedor</a></li>
+            <li id="linkIndustria"><a href="industria-geral.html"><i class="fas fa-chart-bar"></i>Indústria</a></li>
+            <li><a href="arquivos.html"><i class="fas fa-folder-open"></i></i>Arquivos</a></li>
+            <li id="userInfo"></li>
+            
+        </ul>
+
+        <li id="sair">
+            <a href="index.html" id="logoutButton"><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+
+        <hr>
+
+        <div class="logo2">
+            <img src="./assets/img/logo_portal.png">
+        </div>
+    </nav>

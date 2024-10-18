@@ -1,0 +1,43 @@
+/* Preloader (fundo preto transparente) */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo preto transparente */
+  z-index: 9999; /* Muito alto para garantir que fique na frente de todos os elementos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Spinner centralizado com apenas o contorno */
+span.Carregando {
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  display: block;
+  border: 8px solid #5f53e7; /* Contorno de 8px com a cor crimson */
+  border-top: 8px solid transparent; /* Parte superior transparente */
+  border-radius: 50%;
+  animation: loading 1s linear infinite;
+}
+
+
+/* Animação de rotação */
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilo do h1 dentro do preloader */
+#preloader h1 {
+  color: white; /* Texto branco */
+  font-size: 15px; /* Tamanho da fonte */
+  margin-left: 10px; /* Remove qualquer margem extra */
+}

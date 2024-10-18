@@ -1,0 +1,29 @@
+// Importar configuração do Firebase Auth
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js';
+import { firebaseApp } from 'firebase-config.js'; // Supondo que você exporte app de firebase-config
+import { auth } from './firebase-auth.js';
+
+
+// Manipular o envio do formulário de login
+
+document.addEventListener('DOMContentLoaded', function() {
+    const auth = getAuth(firebaseApp);
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log("Login bem-sucedido:", userCredential.user);
+                    window.location.href = 'home.html'; // Redirecionar para a home após o login
+                })
+                .catch((error) => {
+                    console.error("Erro de login:", error);
+                    alert('E-mail ou senha inválidos!');
+                });
+        });
+    }
+});

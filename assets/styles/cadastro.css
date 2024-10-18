@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+/* Estilo para o botão com classe .sub */
+.sub {
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    margin-top: 30px; 
+}
+
+#submit {
+    background-color: #5f53e7; 
+}
+
+.sub:hover, #submit:hover {
+    background-color: #483ebd; 
+}
+
+.box {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/background_home.webp);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+
+.form {
+    background-color: whitesmoke;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    margin-right: 50%;
+    border-radius: 10px;
+    height: 400px;
+    position: absolute;
+    margin-top: 120px;
+    transition: .5s;
+    width: 250px;
+  }
+
+.brand {
+    margin-left: 25%;
+}
+
+.inputbox {
+    margin-top: 20px;
+}
+
+span {
+    color: #bababa;
+    font-size: 12px;
+    font-style: normal;
+}
+
+input[type="text"], input[type="username"] {
+    border: none;
+    border-radius: 60px;
+    padding: 8px 0 8px 0px;
+    outline: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="email"] {
+    border: none;
+    border-radius: 60px;
+    padding: 8px 0 8px 0px;
+    outline: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="password"] {
+    border: none;
+    border-radius: 60px;
+    padding: 8px 0 8px 0px;
+    outline: none;
+    width: 100%;
+    text-align: center;
+  }
+
+
+  /* Estilo para o elemento select */
+#role {
+    background-color: #5f53e7; /* Cor de fundo clara */
+    color: #ffffff; /* Cor do texto */
+    border-radius: 4px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Padding interno para mais conforto */
+    font-size: 16px; /* Tamanho da fonte */
+    font-family: Arial, sans-serif; /* Fonte do texto */
+
+    appearance: none; /* Remove a aparência padrão do browser */
+    transition:  0.3s, box-shadow 0.3s; /* Transição suave para borda e sombra */
+}
+
+/* Estilo para a seta do select */
+#role::-ms-expand {
+    display: none; /* Remove a seta padrão no Internet Explorer */
+}
+
+/* Estilo para o container do select */
+.select-container {
+    position: relative; /* Necessário para posicionar a seta personalizada */
+    display: inline-block; /* Ajusta o tamanho do container ao conteúdo */
+}
+
+/* Estilo para a seta personalizada */
+.select-container::after {
+    content: '\25BC'; /* Símbolo da seta para baixo */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Permite que o clique passe pelo pseudo-elemento */
+    color: #ffffff; /* Cor da seta */
+    font-size: 18px; /* Tamanho da seta */
+}
+
+
+

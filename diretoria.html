@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretoria</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+     <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/diretoria.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+<!--  MENU  -->
+  
+
+<div id="app">
+        <div id="menuContainer"></div>
+</div>
+
+
+<!--  FIM MENU  -->
+
+
+
+
+
+   
+ 
+
+<div class="topo">
+    <i class="fas fa-chart-bar"></i>
+    <h1>Dashboard de Relatórios</h1>
+</div>
+
+
+<div class="app2">
+    
+<div class="wrapper">
+    
+    
+    <div class="left-side">
+        <div class="side-wrapper">
+            
+            <div class="side-menu2">
+                <a href="#">
+                <svg viewBox="0 0 512 512">
+                <g xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                <path d="M0 0h128v128H0zm0 0M192 0h128v128H192zm0 0M384 0h128v128H384zm0 0M0 192h128v128H0zm0 0" data-original="#bfc9d1" />
+                </g>
+                <path xmlns="http://www.w3.org/2000/svg" d="M192 192h128v128H192zm0 0" fill="currentColor" data-original="#82b1ff" />
+                <path xmlns="http://www.w3.org/2000/svg" d="M384 192h128v128H384zm0 0M0 384h128v128H0zm0 0M192 384h128v128H192zm0 0M384 384h128v128H384zm0 0" fill="currentColor" data-original="#bfc9d1" />
+                </svg>
+               
+                </a>
+            
+            </div>
+        </div>
+
+
+
+
+    <div class="side-wrapper">
+
+            <div class="side-menu">
+                    <a href="#" id="vendas-link">Vendas</a>
+                    <a href="#" id="financeiro-link">Financeiro</a>
+                    <a href="#" id="logistica-link">Logística</a>
+                    <a href="#" id="monitoramento-link">Central de <br>monitoramento</a>
+                    <a href="#" id="trade-link">Trade</a>
+                    <a href="painel-industrias.html" class="active">Indústrias</a>
+            </div>
+    </div>
+    </div>
+
+
+   
+
+    
+    
+    <div class="main-container">
+        <div class="main-header">
+            <h3 class="img-content">
+                <i class="fa-sharp fa-solid fa-chart-simple"></i>
+                Relatórios
+                <a href="#"><img src="./assets/img/icon_logo_2.png" class="media-object  img-responsive img-thumbnail" width="40px"></a>
+            </h3>
+            <!--
+                <div class="header-menu">
+                    <a class="main-header-link is-active" href="#">botão</a>
+                    <a class="main-header-link" href="#">botão</a>
+                    <a class="main-header-link" href="#">botão</a>
+                </div>
+                -->
+        </div>
+
+        <!-- Conteúdos correspondentes aos links -->
+        <div class="content-wrapper" id="vendas-content">
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="vendas_devolucao.html">VENDAS X DEVOLUÇÃO</button>
+            </div>
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="relatorio_geral.html">RELATÓRIO GERAL</button>
+            </div>
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+        </div>
+        
+        <div class="content-wrapper" id="financeiro-content">
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+        </div>
+        
+        <div class="content-wrapper" id="logistica-content">
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+        </div>
+        
+        <div class="content-wrapper" id="monitoramento-content">
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+        </div>
+        
+        <div class="content-wrapper" id="trade-content">
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+            <div class="content-wrapper-context">
+                <button class="content-button" data-url="#">EM CONSTRUÇÃO</button>
+            </div>
+        </div>
+
+    <!--  SCRIPT DAS CHAMADAS vendas-link ETC...  -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = {
+                "vendas-link": "vendas-content",
+                "financeiro-link": "financeiro-content",
+                "logistica-link": "logistica-content",
+                "monitoramento-link": "monitoramento-content",
+                "trade-link": "trade-content"
+            };
+    
+            function hideAllContents() {
+                for (const contentId of Object.values(links)) {
+                    document.getElementById(contentId).style.display = "none";
+                }
+            }
+    
+            function removeActiveClass() {
+                for (const linkId of Object.keys(links)) {
+                    document.getElementById(linkId).classList.remove("active");
+                    document.getElementById(linkId).classList.remove("hover");
+                }
+            }
+    
+            function showContent(linkId) {
+                hideAllContents();
+                removeActiveClass();
+                document.getElementById(links[linkId]).style.display = "block";
+                document.getElementById(linkId).classList.add("active");
+                document.getElementById(linkId).classList.add("hover");
+            }
+    
+            // Mostra o conteúdo inicial para "Vendas"
+            showContent("vendas-link");
+    
+            for (const [linkId, contentId] of Object.entries(links)) {
+                document.getElementById(linkId).addEventListener("click", function(event) {
+                    event.preventDefault();
+                    showContent(linkId);
+                });
+            }
+    
+            // Adiciona evento de clique aos botões
+            document.querySelectorAll('.content-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const url = button.getAttribute('data-url');
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</div>    
+</div>       <!--  FIM SCRIPT DAS CHAMADAS vendas-link ETC...  -->
+
+
+    
+
+
+
+    
+
+
+
+
+    
+    
+
+
+
+    
+<script src="./js/firebase-config.js"></script>
+<script src="./js/autenticacao.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script src="./js/diretoria.js"></script>
+</body>
+</html>
