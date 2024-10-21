@@ -11,7 +11,7 @@ para esse sistema foi o Firebase. Nesse sistema também conta com um gerenciador
 visualizado por perfil de usuário, cada perfil de usuário visualiza os arquivo pertinentes aquele
 perfil e assim sucessivamente, o sistema também conta com um sistema de Kanban para gerenciar tarefas.
 Desenvolvi o Design em Figma, a IDE que utilizei foi o VSCode, desenvolvi o sistema em js. css e html,
-nesse projeto não utilizei nenhum Framework. Foi js. css e html puro, porém futuramente foi reescrevê-lo
+nesse projeto não utilizei nenhum Framework. Foi js. css e html puro, porém futuramente irei reescrevê-lo
 em React para melhor desempenho e irei utilizar Node js.
 
 This system was created based on a need that the company I work for had. The market intelligence department was responsible for developing all Power BI reports and sending them via email.
