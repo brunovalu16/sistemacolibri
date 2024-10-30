@@ -1,5 +1,4 @@
-
-
+// Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBn_sNe6UfJzZVQkZWTC-zSl1eoy78g0XE",
   authDomain: "bancopowerbi.firebaseapp.com",
@@ -11,18 +10,8 @@ const firebaseConfig = {
   measurementId: "G-072KHB9PGE"
 };
 
-
-
+// Inicializando o Firebase
 firebase.initializeApp(firebaseConfig);
 
-
-
-
-
-
-
-
-
-
-
-
+// Inicializando o Firestore
+const db = firebase.firestore();

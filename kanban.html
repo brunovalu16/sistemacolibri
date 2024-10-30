@@ -5,14 +5,26 @@
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/preloader.css" />
     <link rel="stylesheet" href="./assets/styles/styles-kanban.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+   
    <title>Kanban</title>
 </head>
 <body id="kanban">
+
+
+<!--  PRELOADER  -->
+
+<div id="preloader">
+    <span class="Carregando"></span>
+    <h1>Carregando...</h1>
+  </div>
+
+  <!--  FIM PRELOADER  -->    
 
 
 <!--  MENU  -->
@@ -25,6 +37,14 @@
 
 <!--  FIM MENU  -->
 
+
+<div class="topo">
+    <i class="fa-regular fa-folder-open"></i>
+    <h1>Gerenciador de Tarefas</h1>
+    
+
+
+  </div>
 
 
 
@@ -189,9 +209,11 @@
         </div>
     </main>
 
-    <script src="./js/firebase-config.js"></script>
+    <script src="./js/preloader.js"></script>
     <script src="./js/autenticacao.js"></script>
-    <script type="module" src="./js/script.js"></script>
+    <script src="./js/firebase-config.js"></script>
     <script src="./js/script-kanban.js"></script>
+    <script type="module" src="./js/script.js"></script>
+    
 </body>
 </html>

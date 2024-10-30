@@ -98,6 +98,10 @@ function configurarMenu(usuario) {
     "03": ["linkSupervisor"],
     "04": ["linkVendedor"],
     "05": ["linkIndustria"],
+    "06": ["linkDiretoriaTrade"],
+    "07": ["linkGerenciaTrade"],
+    "08": ["linkCoordenacaoTrade"],
+    "09": ["linkColaboradorTrade"],
   };
 
   // Mostrar o link correspondente ao perfil e ocultar os demais

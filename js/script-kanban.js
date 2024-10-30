@@ -20,12 +20,30 @@ function applyDateMask(input) {
     });
 }
 
-// Chama a máscara para os campos de data
 applyDateMask(document.getElementById('dataCriacao'));
 applyDateMask(document.getElementById('dataFinalizacao'));
 
-// Seleciona o botão de adicionar na coluna Pendente para abrir o modal
-document.querySelector('.kanban-column[data-id="1"] .add-card').addEventListener('click', openModal);
+// Função para salvar um card no Firestore
+function saveCardToFirestore(cardData, callback) {
+    db.collection('kanbanCards').add(cardData)
+        .then((docRef) => {
+            console.log("Card salvo com ID: ", docRef.id);
+            if (callback) callback(docRef.id); // Callback com o ID do documento
+        })
+        .catch((error) => console.error("Erro ao salvar o card: ", error));
+}
+
+// Função para carregar cards do Firestore
+function loadCardsFromFirestore() {
+    db.collection('kanbanCards').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const cardData = doc.data();
+            const card = createCardElement(cardData, doc.id);
+            const column = document.querySelector(`.kanban-column[data-id="${cardData.columnId}"] .kanban-cards`);
+            column.appendChild(card);
+        });
+    }).catch((error) => console.error("Erro ao carregar os cards: ", error));
+}
 
 // Função para criar um novo card com base nas informações do modal
 function createCardFromModal() {
@@ -34,18 +52,33 @@ function createCardFromModal() {
     const assunto = document.getElementById('assunto').value;
     const dataCriacao = document.getElementById('dataCriacao').value;
     const dataFinalizacao = document.getElementById('dataFinalizacao').value;
-    const responsavel = document.getElementById('responsavel').value; // Captura o responsável
-    const prioridade = document.getElementById('prioridade').value; // Captura a prioridade selecionada
+    const responsavel = document.getElementById('responsavel').value;
+    const prioridade = document.getElementById('prioridade').value;
 
     if (!nome || !departamento || !assunto || !dataCriacao || !dataFinalizacao || !responsavel || !prioridade) {
         alert("Preencha todos os campos!");
         return;
     }
 
-    // Define o rótulo da prioridade e a classe CSS associada
-    let badgeClass;
-    let badgeText;
-    switch (prioridade) {
+    const cardData = { nome, departamento, assunto, dataCriacao, dataFinalizacao, responsavel, prioridade, columnId: 1 };
+    saveCardToFirestore(cardData, (docId) => {
+        // Cria e exibe o card na interface após salvar no Firestore
+        const card = createCardElement(cardData, docId);
+        const column = document.querySelector('.kanban-column[data-id="1"] .kanban-cards');
+        column.appendChild(card);
+
+        closeModal();
+    });
+}
+
+// Função para criar o elemento de card baseado nos dados fornecidos
+function createCardElement(data, cardId) {
+    const card = document.createElement('div');
+    card.classList.add('kanban-card');
+    card.setAttribute('draggable', 'true');
+
+    let badgeClass, badgeText;
+    switch (data.prioridade) {
         case 'high':
             badgeClass = 'high';
             badgeText = 'Alta prioridade';
@@ -60,63 +93,43 @@ function createCardFromModal() {
             break;
     }
 
-    const card = document.createElement('div');
-    card.classList.add('kanban-card');
-    card.setAttribute('draggable', 'true');
-
     card.innerHTML = `
         <div class="badge ${badgeClass}">
             <span>${badgeText}</span>
         </div>
-        <p class="card-title">${assunto}</p>
+        <p class="card-title">${data.assunto}</p>
         <div class="card-content">
-            <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>Departamento:</strong> ${departamento}</p>
-            <p><strong>Responsável:</strong> ${responsavel}</p>
-            <p><strong>Data de Criação:</strong> ${dataCriacao}</p>
-            <p><strong>Data de Finalização:</strong> ${dataFinalizacao}</p>
+            <p><strong>Nome:</strong> ${data.nome}</p>
+            <p><strong>Departamento:</strong> ${data.departamento}</p>
+            <p><strong>Responsável:</strong> ${data.responsavel}</p>
+            <p><strong>Data de Criação:</strong> ${data.dataCriacao}</p>
+            <p><strong>Data de Finalização:</strong> ${data.dataFinalizacao}</p>
         </div>
-        
     `;
 
-    // Adiciona eventos de arrastar e soltar ao novo card
-    addCardEvents(card);
-
-    // Adiciona o botão de excluir no novo card
-    addDeleteButton(card);
-
-    // Adiciona o novo card à coluna Pendente
-    const column = document.querySelector('.kanban-column[data-id="1"]');
-    column.querySelector('.kanban-cards').appendChild(card);
-
-    // Fecha o modal
-    closeModal();
+    addCardEvents(card, cardId);
+    addDeleteButton(card, cardId);
+    return card;
 }
 
-// Evento de submissão do formulário para criar o card
-document.getElementById('cardForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    createCardFromModal();
-});
-
-// Botão de cancelar para fechar o modal
-document.getElementById('cancelar').addEventListener('click', closeModal);
-
-// Botão para fechar o modal (X)
-document.querySelector('.close').addEventListener('click', closeModal);
-
 // Função para adicionar eventos de arrastar e soltar aos cards
-function addCardEvents(card) {
+function addCardEvents(card, cardId) {
     card.addEventListener('dragstart', e => {
         e.currentTarget.classList.add('dragging');
     });
 
     card.addEventListener('dragend', e => {
         e.currentTarget.classList.remove('dragging');
+        const columnId = card.closest('.kanban-column').getAttribute('data-id');
+
+        // Atualiza a coluna do card no Firestore
+        db.collection('kanbanCards').doc(cardId).update({ columnId: columnId })
+            .then(() => console.log("Card atualizado com nova coluna no Firestore."))
+            .catch((error) => console.error("Erro ao atualizar a coluna do card: ", error));
     });
 }
 
-// Seleciona todos os elementos com a classe '.kanban-cards' (as colunas) e adiciona eventos a cada um deles
+// Função para permitir o drop nas colunas
 document.querySelectorAll('.kanban-cards').forEach(column => {
     column.addEventListener('dragover', e => {
         e.preventDefault();
@@ -128,20 +141,11 @@ document.querySelectorAll('.kanban-cards').forEach(column => {
             column.insertBefore(draggingCard, afterElement);
         }
     });
-
-    column.addEventListener('drop', e => {
-        e.currentTarget.classList.remove('cards-hover');
-    });
-
-    column.addEventListener('dragleave', e => {
-        e.currentTarget.classList.remove('cards-hover');
-    });
 });
 
 // Função para pegar o elemento que está sendo arrastado
 function getDragAfterElement(container, y) {
     const draggableElements = [...container.querySelectorAll('.kanban-card:not(.dragging)')];
-
     return draggableElements.reduce((closest, child) => {
         const box = child.getBoundingClientRect();
         const offset = y - box.top - box.height / 2;
@@ -154,7 +158,7 @@ function getDragAfterElement(container, y) {
 }
 
 // Função para excluir cards
-function addDeleteButton(card) {
+function addDeleteButton(card, cardId) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-card');
     deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -162,10 +166,26 @@ function addDeleteButton(card) {
 
     deleteButton.addEventListener('click', () => {
         card.remove();
+
+        // Excluir do Firestore
+        if (cardId) {
+            db.collection('kanbanCards').doc(cardId).delete()
+                .then(() => console.log("Card excluído do Firestore com sucesso!"))
+                .catch((error) => console.error("Erro ao excluir o card: ", error));
+        }
     });
 }
 
-// Aplicando os eventos de arrastar e soltar nos cards existentes
-document.querySelectorAll('.kanban-card').forEach(card => {
-    addCardEvents(card);
+// Carrega os cards salvos no Firestore ao carregar a página
+document.addEventListener('DOMContentLoaded', loadCardsFromFirestore);
+
+// Evento de submissão do formulário
+document.getElementById('cardForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    createCardFromModal();
 });
+
+// Botões de abrir e fechar o modal
+document.querySelector('.add-card').addEventListener('click', openModal);
+document.getElementById('cancelar').addEventListener('click', closeModal);
+document.querySelector('.close').addEventListener('click', closeModal);

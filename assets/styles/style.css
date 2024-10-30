@@ -8,7 +8,7 @@ body, html {
 
 /* Sidebar retraída por padrão */
 .sidebar {
-  width: 65px; /* Retraída por padrão */
+  width: 85px; /* Retraída por padrão */
   height: 100vh;
   background-color: #5f53e7;
   color: #ecf0f1;
@@ -18,9 +18,10 @@ body, html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
   transition: width 0.3s ease;
   overflow: hidden;
+  font-size: 13px
 }
 
 #userInfo {
@@ -71,6 +72,12 @@ ul#menu {
 
 ul#menu li {
   margin: 15px 0;
+}
+
+#loggedInUser {
+  white-space: normal;      /* Permite quebra de linha */
+  word-wrap: break-word;    /* Quebra palavras longas se necessário */
+  overflow-wrap: break-word; /* Quebra palavras longas para compatibilidade */
 }
 
 ul#menu li a {

@@ -1,4 +1,4 @@
-import {getCookie} from "./cookie.js"
+import {getCookie} from "../js/cookie.js"
 
 // função qual a permissão de visualização dos arquivos dos usuários
 
