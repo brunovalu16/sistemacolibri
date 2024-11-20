@@ -41,3 +41,59 @@ span.Carregando {
   font-size: 15px; /* Tamanho da fonte */
   margin-left: 10px; /* Remove qualquer margem extra */
 }
+
+
+
+
+/*________________________________________________PRELOADERTWO_______________________________________________________*/
+
+
+
+/* Preloader (fundo preto transparente) */
+#preloadertwo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  ; /* Fundo preto transparente */
+  z-index: 9999; /* Muito alto para garantir que fique na frente de todos os elementos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preloadertwo img.masthead-avatar {
+  margin-left: 50px; /* ajuste o valor conforme necessário */
+}
+
+/* Spinner centralizado com apenas o contorno */
+span.Carregando {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  display: block;
+  border: 8px solid #5f53e7; /* Contorno de 8px com a cor crimson */
+  border-top: 8px solid transparent; /* Parte superior transparente */
+  border-radius: 50%;
+  animation: loading 1s linear infinite;
+}
+
+
+/* Animação de rotação */
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilo do h1 dentro do preloader */
+#preloadertwo h1 {
+  color: #5b5b5b; /* Texto branco */
+  font-size: 15px; /* Tamanho da fonte */
+  margin-left: 10px; /* Remove qualquer margem extra */
+}

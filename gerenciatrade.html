@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diretoria</title>
+    <title>Relatórios</title>
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
+    <script src="./js/autenticacao.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
@@ -68,10 +69,12 @@
     <div class="side-wrapper">
 
             <div class="side-menu">
+                    <!--
                     <a href="#" id="vendas-link">Vendas</a>
                     <a href="#" id="financeiro-link">Financeiro</a>
                     <a href="#" id="logistica-link">Logística</a>
                     <a href="#" id="monitoramento-link">Central de <br>monitoramento</a>
+                    -->
                     <a href="#" id="trade-link">Trade</a>
                     <a href="painel-industrias.html" class="active">Indústrias</a>
             </div>
@@ -152,56 +155,73 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const links = {
-                "vendas-link": "vendas-content",
-                "financeiro-link": "financeiro-content",
-                "logistica-link": "logistica-content",
-                "monitoramento-link": "monitoramento-content",
-                "trade-link": "trade-content"
-            };
-    
-            function hideAllContents() {
-                for (const contentId of Object.values(links)) {
-                    document.getElementById(contentId).style.display = "none";
-                }
+    const links = {
+        "vendas-link": "vendas-content",
+        "financeiro-link": "financeiro-content",
+        "logistica-link": "logistica-content",
+        "monitoramento-link": "monitoramento-content",
+        "trade-link": "trade-content"
+    };
+
+    function hideAllContents() {
+        for (const contentId of Object.values(links)) {
+            const contentElement = document.getElementById(contentId);
+            if (contentElement) {
+                contentElement.style.display = "none";
             }
-    
-            function removeActiveClass() {
-                for (const linkId of Object.keys(links)) {
-                    document.getElementById(linkId).classList.remove("active");
-                    document.getElementById(linkId).classList.remove("hover");
-                }
+        }
+    }
+
+    function removeActiveClass() {
+        for (const linkId of Object.keys(links)) {
+            const linkElement = document.getElementById(linkId);
+            if (linkElement) {
+                linkElement.classList.remove("active");
+                linkElement.classList.remove("hover");
             }
-    
-            function showContent(linkId) {
-                hideAllContents();
-                removeActiveClass();
-                document.getElementById(links[linkId]).style.display = "block";
-                document.getElementById(linkId).classList.add("active");
-                document.getElementById(linkId).classList.add("hover");
-            }
-    
-            // Mostra o conteúdo inicial para "Vendas"
-            showContent("vendas-link");
-    
-            for (const [linkId, contentId] of Object.entries(links)) {
-                document.getElementById(linkId).addEventListener("click", function(event) {
-                    event.preventDefault();
-                    showContent(linkId);
-                });
-            }
-    
-            // Adiciona evento de clique aos botões
-            document.querySelectorAll('.content-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const url = button.getAttribute('data-url');
-                    if (url) {
-                        window.location.href = url;
-                    }
-                });
+        }
+    }
+
+    function showContent(linkId) {
+        hideAllContents();
+        removeActiveClass();
+        const contentElement = document.getElementById(links[linkId]);
+        const linkElement = document.getElementById(linkId);
+        if (contentElement && linkElement) {
+            contentElement.style.display = "block";
+            linkElement.classList.add("active");
+            linkElement.classList.add("hover");
+        }
+    }
+
+    // Mostra o conteúdo inicial para "Vendas"
+    if (document.getElementById("vendas-link")) {
+        showContent("vendas-link");
+    }
+
+    for (const [linkId, contentId] of Object.entries(links)) {
+        const linkElement = document.getElementById(linkId);
+        if (linkElement) {
+            linkElement.addEventListener("click", function(event) {
+                event.preventDefault();
+                showContent(linkId);
             });
+        }
+    }
+
+    // Adiciona evento de clique aos botões
+    document.querySelectorAll('.content-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const url = button.getAttribute('data-url');
+            if (url) {
+                window.location.href = url;
+            }
         });
-    </script>
+    });
+});
+
+
+</script>
 
 
 </div>    
@@ -224,7 +244,6 @@
 
     
 <script src="./js/firebase-config.js"></script>
-<script src="./js/autenticacao.js"></script>
 <script type="module" src="./js/script.js"></script>
 <script src="./js/diretoria.js"></script>
 </body>
