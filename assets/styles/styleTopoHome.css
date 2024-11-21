@@ -4,7 +4,7 @@
 
 .topo {
     width: 100%;
-    background-color: #6027cc;
+    background-color: #f0f0f0;
     display: flex; /* Flexbox para organizar os itens */
     align-items: center; /* Alinha verticalmente ao centro */
     justify-content: space-between; /* Espaça os itens */
@@ -29,7 +29,7 @@
 
 .topo .icon {
   font-size: 25px !important; /* Força o tamanho do ícone */
-  color: #fff; /* Cor do ícone de usuário */
+  color: #5f53e7; /* Cor do ícone de usuário */
   margin-right: 10px; /* Espaçamento antes da linha */
 }
 
@@ -45,7 +45,7 @@
 .topo li {
     list-style: none; /* Remove os marcadores */
     font-size: 16px; /* Tamanho da fonte */
-    color: #fff; /* Adiciona cor ao texto */
+    color: #5f53e7; /* Adiciona cor ao texto */
     font-weight: 500; /* Peso da fonte para combinar com o estilo */
     text-align: right; /* Garante que o texto fique alinhado à direita */
     white-space: nowrap; /* Evita quebra de linha */
