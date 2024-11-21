@@ -17,22 +17,13 @@
   --scrollbar-bg: rgb(1 2 3 / 40%);
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-  }
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  .topo {
-    width: 100%;
-    background-color: #f0f0f0;
-    display: flex; /* Flexbox para organizar os itens */
-    align-items: center; /* Alinha verticalmente ao centro */
-    justify-content: space-between; /* Espaça os itens */
-    padding: 20px; /* Espaçamento interno */
-    box-sizing: border-box; /* Garante que o padding seja contabilizado dentro da largura */
-  }
   
   .topo {
     width: 100%;
@@ -67,11 +58,11 @@ body, html {
 
 
 .vertical-line {
-    height: 30px; /* Altura da linha */
+    height: 27px; /* Altura da linha */
     width: 2px; /* Largura da linha */
     background-color: #ccc; /* Cor da linha */
-    margin-right: 15px; /* Espaçamento da linha vertical com o texto */
-    margin-left: 10px;
+    margin-right: 13px; /* Espaçamento da linha vertical com o texto */
+    margin-left: 2px;
 }
 
 .topo li {

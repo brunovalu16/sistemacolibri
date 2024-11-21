@@ -9,6 +9,7 @@
    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_powerbi.png">
    <link rel="stylesheet" href="./assets/styles/style.css">
    <link rel="stylesheet" href="./assets/styles/home.css">
+   <link rel="stylesheet" href="./assets/styles/styleTopoHome.css">
    <link rel="stylesheet" href="./assets/styles/preloader.css" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
@@ -27,6 +28,14 @@
    <!-- FIM MENU -->
 
    <header>
+
+      <div class="topo">
+         <h1></h1>
+         <i class="icon fa-solid fa-user"></i>
+         <div class="vertical-line"></div>
+         <li id="userInfo"><span id="loggedInUser"></span></li>
+      </div>
+
       <nav class="navbar navbar-expand-md fixed-top" id="mainNav">
          <div class="container">
             <a class="navbar-brand js-scroll-trigger logo" href="./assets/img/logo_fpb_branca.png">
@@ -78,6 +87,9 @@
          </div>
       </div>
    </section>
+
+   
+  
 
    <footer>
       <div class="container">

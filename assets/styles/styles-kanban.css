@@ -12,24 +12,52 @@
 .topo {
     width: 100%;
     background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .topo i {
-    margin-left: 250px;
-    font-size: 50px;
+    display: flex; /* Flexbox para organizar os itens */
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: space-between; /* Espaça os itens */
+    padding: 20px; /* Espaçamento interno */
+    box-sizing: border-box; /* Garante que o padding seja contabilizado dentro da largura */
+}
+
+.topo i {
+    font-size: 50px; /* Ícone do gráfico */
     color: #5f53e7;
-  }
-  
-  .topo h1 {
+    margin-left: 250px; /* Deslocamento à esquerda */
+}
+
+.topo h1 {
     margin: 0;
-    margin-left: 20px;
+    margin-left: 20px; /* Espaçamento entre o ícone e o título */
     font-size: 24px;
     font-weight: 500;
     color: #c6c6c6;
-  }
+    flex-grow: 1; /* O título ocupa o espaço restante */
+}
+
+.topo .icon {
+  font-size: 25px !important; /* Força o tamanho do ícone */
+  color: #5f53e7; /* Cor do ícone de usuário */
+  margin-right: 10px; /* Espaçamento antes da linha */
+}
+
+
+.vertical-line {
+    height: 27px; /* Altura da linha */
+    width: 2px; /* Largura da linha */
+    background-color: #ccc; /* Cor da linha */
+    margin-right: 13px; /* Espaçamento da linha vertical com o texto */
+    margin-left: 2px;
+}
+
+.topo li {
+    list-style: none; /* Remove os marcadores */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #5f53e7; /* Adiciona cor ao texto */
+    font-weight: 500; /* Peso da fonte para combinar com o estilo */
+    text-align: right; /* Garante que o texto fique alinhado à direita */
+    white-space: nowrap; /* Evita quebra de linha */
+    padding-bottom: 25px;
+}
   
   img {
     max-width: 100%;

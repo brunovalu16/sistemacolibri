@@ -87,7 +87,8 @@ function configurarMenu(usuario) {
   // Exibir o nome do usuário na interface
   const loggedInUserSpan = document.getElementById("loggedInUser");
   if (loggedInUserSpan && usuario.username) {
-    loggedInUserSpan.textContent = `Olá, ${usuario.username}`;
+    loggedInUserSpan.textContent = `${usuario.username}`;
+    //loggedInUserSpan.textContent = `Olá, ${usuario.username}`;
   }
 
   // Definir os links de acordo com o perfil do usuário
